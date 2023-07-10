@@ -1,7 +1,36 @@
-.header-section{
+.hero-section{
     background-color:rgb(73, 94, 87);
+    display: flex;
 }
-.hero-header {
+.hero-header{
     font-family:'Courier New', Courier, monospace;
     font-weight: bold;
+    color:rgb(244,206,20);
 }
+
+.hero-intro {
+    flex: 1;
+  }
+.image-item{
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      .image-item, img {
+        max-width: 100%;
+        height:100%;
+      }
+
+      .cta-button {
+        background-color: #d7b50d;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        text-decoration: none;
+        border-radius: 20px;
+      }
+      .cta-button:hover {
+        background-color: #c19d0a;
+    }
