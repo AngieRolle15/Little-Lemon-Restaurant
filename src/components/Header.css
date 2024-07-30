@@ -1,36 +1,132 @@
-.hero-section{
-    background-color:rgb(73, 94, 87);
-    display: flex;
+@import '~@fontsource/markazi-text';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.hero-header{
-    font-family:'Courier New', Courier, monospace;
-    font-weight: bold;
-    color:rgb(244,206,20);
+
+.hero-section {
+  background-color: rgb(73, 94, 87);
+  display: flex;
+  height: 400px;
+  width: 100%;
+  justify-content: center;
 }
+ /* justify-content: center;*/
+  /*align-items: center;*/
+
+  /*position: relative; }/* Add relative positioning to the hero-section */
+
 
 .hero-intro {
-    flex: 1;
-  }
-.image-item{
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-      }
-      .image-item, img {
-        max-width: 100%;
-        height:100%;
-      }
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 450px;
+  margin: 40px 0 20px 0;
+  padding-top: 20px;
+}
 
-      .cta-button {
-        background-color: #d7b50d;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 18px;
-        text-decoration: none;
-        border-radius: 20px;
-      }
-      .cta-button:hover {
-        background-color: #c19d0a;
-    }
+.hero-header {
+  font-family: 'Markazi Text', serif;
+  font-size: 64pt;
+  font-weight: 500;
+  color: #f4ce14;
+  line-height: 0.2em;
+}
+
+.hero-subheading {
+  font-size: 40pt;
+  font-weight: normal;
+  color: hsl(150, 6%, 93%);
+  padding-top: 5px;
+}
+
+.hero-desc {
+  color: white;
+  text-align: left;
+  max-width: 400px;
+  margin: 20px 0;
+}
+
+.cta-button {
+  background-color: #fece14;
+  color: #fff;
+  border: none;
+  font-size: 18pt;
+  text-decoration: none;
+  border-radius: 20px;
+  max-width: auto;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cta-button:hover {
+  background-color: #ee9972;
+}
+
+.image-item {
+  display: flex;
+  align-items: flex-end; /* Align the image to the bottom */
+  margin-left: 20px;
+  margin-bottom: -60px;
+  margin-top: 40px;
+}
+
+.image-item img {
+  height: 480px;
+  width: 400px;
+  border-radius: 15px;
+  /*object-fit: cover;*/
+  
+}
+
+
+/* Main section styling */
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin-top:60px;
+}
+
+/*.specials-section,
+.testimonials-section,
+.about-section {
+  width: 100%;
+  max-width: 800px;  Adjust this to fit your design 
+  margin: 20px 0;
+}
+
+.headings-specials {
+  display: flex;
+  justify-content: space-between; Distribute space between items 
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;Add padding to the sides
+}
+
+.headings-specials h1 {
+  font-size: 2em;
+}
+
+.headings-specials .menu-button {
+  background-color: #fece14;
+  border-radius: 5px;
+  border-style: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.testimonials-container,
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}*/
+
+

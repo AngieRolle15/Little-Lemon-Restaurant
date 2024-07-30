@@ -1,0 +1,54 @@
+/* Card.css */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  width: 300px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space between card elements */
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  max-height: 175px;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-content {
+  flex-grow: 1; /* Allow content to grow and fill the available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space between card content elements */
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.card-price {
+  font-size: 16px;
+  color: #333;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #666;
+  margin-top: auto; /* Push the description to the bottom of the content */
+}
+.special-headings{
+  display: flex;
+}
