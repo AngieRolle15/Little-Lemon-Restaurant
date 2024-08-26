@@ -69,3 +69,14 @@
 .confirm-booking p{
   padding-top: 10px;
 }
+input:focus:invalid{
+  border: 2px solid red;
+}
+.error-border {
+  border: 2px solid red;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}

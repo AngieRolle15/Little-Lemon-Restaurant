@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BookingForm from './BookingForm';
 import BookingList from './BookingList';
 
-function BookingPage({ availableTimes, dispatch, selectedDate, submitSuccess, submitError, submitForm }) {
+function BookingPage({ availableTimes, dispatch, selectedDate, submitForm }) {
     const navigate = useNavigate();
 
     const handleSubmitForm = async (formData) => {
@@ -17,8 +17,6 @@ function BookingPage({ availableTimes, dispatch, selectedDate, submitSuccess, su
     return (
         <div className="booking-page">
             <h1>Book Now</h1>
-            {submitSuccess && <p>Booking submitted successfully!</p>}
-            {submitError && <p>Failed to submit booking.</p>}
             <BookingForm 
                 availableTimes={availableTimes} 
                 dispatch={dispatch} 

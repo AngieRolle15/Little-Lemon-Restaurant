@@ -22,8 +22,6 @@ export const updateTimes = (state, action) => {
 const initialState = {
     availableTimes: [],
     selectedDate: new Date().toISOString().split('T')[0],
-    submitSuccess: false,
-    submitError: false,
 };
 
 const timesReducer = (state, action) => {
@@ -35,18 +33,6 @@ const timesReducer = (state, action) => {
                 selectedDate: action.payload.date,
             };
 
-        case 'SUBMIT_SUCCESS':
-            return {
-                ...state,
-                submitSuccess: true,
-                submitError: false,
-            };
-        case 'SUBMIT_ERROR':
-            return {
-                ...state,
-                submitSuccess: false,
-                submitError: true,
-            };
         default:
             return state;
     }
@@ -57,12 +43,8 @@ function App() {
 
     const submitForm = async (formData) => {
         const result = await submitAPI(formData);
-        if (result) {
-            dispatch({ type: 'SUBMIT_SUCCESS' });
-        } else {
-            dispatch({ type: 'SUBMIT_ERROR' });
-        }
-        return result; };
+        return result; 
+    };
 
     useEffect(() => {
         const fetchInitialTimes = async () => {
@@ -94,8 +76,6 @@ function App() {
                                 availableTimes={state.availableTimes} 
                                 dispatch={dispatch} 
                                 selectedDate={state.selectedDate} 
-                                submitSuccess={state.submitSuccess}
-                                submitError={state.submitError}
                                 submitForm={submitForm} />
                         } 
                     />
