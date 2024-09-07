@@ -9,37 +9,41 @@
 .hero-section {
   background-color: rgb(73, 94, 87);
   display: flex;
-  height: 400px;
+  height: 500px;
   width: 100%;
-  justify-content: center;
 }
- /* justify-content: center;*/
-  /*align-items: center;*/
 
-  /*position: relative; }/* Add relative positioning to the hero-section */
+.hero-container{
+  display: flex;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
 
-
+}
 .hero-intro {
   display: flex;
   flex-direction: column;
   text-align: left;
   max-width: 450px;
-  margin: 40px 0 20px 0;
+  margin: 30px 0 20px 0;
   padding-top: 20px;
+  width: calc(100% - 30px); 
+  line-height: 1.5;
+  font-size: 18pt;
 }
 
-.hero-header {
+#hero-header {
   font-family: 'Markazi Text', serif;
   font-size: 64pt;
   font-weight: 500;
-  color: #f4ce14;
+  color: #000;
   line-height: 0.2em;
 }
 
-.hero-subheading {
+#hero-subheading {
   font-size: 40pt;
+  font-family: 'Markazi Text', serif;
   font-weight: normal;
-  color: hsl(150, 6%, 93%);
+  color: #000;
   padding-top: 5px;
 }
 
@@ -47,7 +51,8 @@
   color: white;
   text-align: left;
   max-width: 400px;
-  margin: 20px 0;
+  margin-bottom: 20px;
+  width: calc(100% - 30px); 
 }
 
 .cta-button {
@@ -57,10 +62,10 @@
   font-size: 18pt;
   text-decoration: none;
   border-radius: 20px;
-  max-width: auto;
-  padding: 10px 20px;
+  max-width: 400px;
+  padding: 10px 10px;
   text-align: center;
-  margin-top: 20px;
+  margin:5px 0;
 }
 
 .cta-button:hover {
@@ -69,64 +74,19 @@
 
 .image-item {
   display: flex;
-  align-items: flex-end; /* Align the image to the bottom */
-  margin-left: 20px;
   margin-bottom: -60px;
   margin-top: 40px;
+  justify-content: flex-end;
 }
 
 .image-item img {
-  height: 480px;
+  height: 550px;
   width: 400px;
   border-radius: 15px;
-  /*object-fit: cover;*/
-  
+  position: relative;
+  left: 12.5%;
 }
 
 
-/* Main section styling */
-.main-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
-  margin-top:60px;
-}
-
-/*.specials-section,
-.testimonials-section,
-.about-section {
-  width: 100%;
-  max-width: 800px;  Adjust this to fit your design 
-  margin: 20px 0;
-}
-
-.headings-specials {
-  display: flex;
-  justify-content: space-between; Distribute space between items 
-  align-items: center;
-  width: 100%;
-  padding: 0 20px;Add padding to the sides
-}
-
-.headings-specials h1 {
-  font-size: 2em;
-}
-
-.headings-specials .menu-button {
-  background-color: #fece14;
-  border-radius: 5px;
-  border-style: none;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-weight: bold;
-}
-
-.testimonials-container,
-.about-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}*/
 
 

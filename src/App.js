@@ -2,7 +2,6 @@ import React, { useReducer, useEffect } from 'react';
 import { fetchAPI, submitAPI } from './js/api';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Header from './components/Header';
 import HomePage from './components/HomePage';
 import BookingPage from './components/BookingPage';
 import ConfirmedBooking from './components/ConfirmedBooking';
@@ -24,19 +23,20 @@ const initialState = {
     selectedDate: new Date().toISOString().split('T')[0],
 };
 
-const timesReducer = (state, action) => {
+function timesReducer(state, action) {
     switch (action.type) {
         case 'SET_TIMES':
-            return {
-                ...state,
-                availableTimes: action.payload.times,
-                selectedDate: action.payload.date,
-            };
-
+            return { 
+                ...state, 
+                availableTimes: action.payload.times, 
+                selectedTime: action.payload.times[0] || "" // Automatically set the first available time
+            }; 
+        case 'SET_DATE':
+            return { ...state, selectedDate: action.payload.date };
         default:
             return state;
     }
-};
+}
 
 function App() {
     const [state, dispatch] = useReducer(timesReducer, initialState);
@@ -66,7 +66,6 @@ function App() {
         <Router>
             <>
                 <Navbar />
-                <Header />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route 

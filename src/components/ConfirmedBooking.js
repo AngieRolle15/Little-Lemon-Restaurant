@@ -2,10 +2,11 @@ import React from 'react';
 
 function ConfirmedBooking() {
     return (
-        <div className="confirm-booking">
-            <h2>Booking Confirmed!</h2>
-            <p>Thank you for your reservation. We look forward to seeing you!</p>
-        </div>
+        <div role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description" className='confirm'>
+    <h2 className="dialog-title">Reservation Confirmation</h2>
+    <p className="dialog-description">Your reservation has been successfully made. 
+        <br/>Thank you for booking with us.</p>
+</div>
     );
 }
 

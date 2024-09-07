@@ -1,24 +1,23 @@
+@import "~@fontsource/karla";
 
 #root {
   display: flex;
   flex-direction: column;
-  font-family:Arial, Helvetica, sans-serif;
-  align-items: center;
+  font-family:'karla',sans-serif;
+  max-width: 1440px;
+  color:#333333;
+  line-height: 1.5;
 }
-.hero-section, .footer-section{
+.body{
+  line-height: 1.5;
+}
+.main-section{
   height: 100%;
+  flex:1;
 }
-.main-section {
-  flex: 1;
+.specials-section .about-section{
+  margin-right:12.5%;
+  margin-left: 12.5%;
 }
 
-/*h1{
-  font-size: 20pt;
-}
-h2{
-  font-size:18pt;
-}
-p{
-  font-size:16pt;
-  line-height: 16px;
-}*/
+

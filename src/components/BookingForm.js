@@ -2,7 +2,9 @@ import React, { useReducer, useEffect, useState } from 'react';
 import { fetchAPI } from '../js/api';
 import './BookingForm.css';
 import { Formik, Field, Form } from 'formik';
-import FormValidation from './FormValidation'; // Import the validation schema
+import FormValidation from './FormValidation'; 
+import CustomDropdown from './CustomDropdown';
+import Glasses from './images/glasses.png'
 
 const initialState = {
     availableTimes: [],
@@ -15,7 +17,11 @@ const initialState = {
 function timesReducer(state, action) {
     switch (action.type) {
         case 'SET_TIMES':
-            return { ...state, availableTimes: action.payload.times, selectedTime: action.payload.times[0] || "" }; // Set default selected time
+            return { 
+                ...state, 
+                availableTimes: action.payload.times, 
+                selectedTime: action.payload.times[0] || "" 
+            }; 
         case 'SET_DATE':
             return { ...state, selectedDate: action.payload.date };
         default:
@@ -47,8 +53,13 @@ function BookingForm({ submitForm }) {
 
     return (
         <Formik
-            initialValues={initialState}
-            validationSchema={FormValidation}  // Apply the Yup validation schema
+            initialValues={{
+                selectedDate: state.selectedDate,
+                selectedTime: state.selectedTime || (state.availableTimes[0] || ""), 
+                guests: initialState.guests,
+                occasion: initialState.occasion,
+            }}  
+            validationSchema={FormValidation}  
             onSubmit={(values, { setSubmitting }) => {
                 setIsSubmitted(true);
                 setSubmitting(true);
@@ -56,84 +67,91 @@ function BookingForm({ submitForm }) {
                 setSubmitting(false);
             }}
         >
-            {({ handleChange, handleSubmit, errors, touched, isSubmitting }) => (
+            {({ handleChange, handleSubmit, errors, touched, isSubmitting, values }) => (
                 <Form 
                     onSubmit={(e) => {
-                        e.preventDefault();  // Prevent default form submission
+                        e.preventDefault();  
                         setIsSubmitted(true);
                         handleSubmit(e);
                     }} 
                     className="booking-form"
                 >
-                    <div className="form-row">
-                        <label htmlFor="booking-date">Choose date</label>
-                        <Field
-                             id="booking-date"
-                             type="date"
+                    <div className="form-row row-group">
+                        <div className="form-group">
+                            <label htmlFor="booking-date">Choose date</label>
+                            <Field
+                            id="booking-date"
+                            type="date"
                             name="selectedDate"
                             className={`input-field ${isSubmitted && touched.selectedDate && errors.selectedDate ? 'error-border' : ''}`}
+                            style={{ borderColor: isSubmitted && touched.selectedDate && errors.selectedDate ? 'red' : '#f4f4f4' }}
                             required
                             onChange={(e) => {
-                             handleChange(e);
-                            handleDateChange(e.target.value);
-                            }} />
-                        
-                        {isSubmitted && touched.selectedDate && errors.selectedDate && (
-                            <p className="error-message">{errors.selectedDate}</p>
-                        )}
+                            handleChange(e);
+                            handleDateChange(e.target.value); 
+  }} 
+/>
+{isSubmitted && touched.selectedDate && errors.selectedDate && (
+  <p className="error-message">{errors.selectedDate}</p>
+)}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="booking-time">Choose time</label>
+                            <CustomDropdown
+                                name="selectedTime"
+                                value={values.selectedTime}
+                                options={state.availableTimes}
+                                onChange={handleChange}
+                                style={{ borderColor: isSubmitted && touched.selectedTime && errors.selectedTime ? 'red' : '#f4f4f4' }}
+                            />
+                          {isSubmitted && touched.selectedTime && errors.selectedTime && (
+  <p className="error-message">{errors.selectedTime}</p>
+)}
+                        </div>
                     </div>
-                    <div className="form-row">
-    <label htmlFor="booking-time">Choose time</label>
-    <Field 
-        id="booking-time"
-        as="select" 
-        name="selectedTime" 
-        className={`input-field ${isSubmitted && touched.selectedTime && errors.selectedTime ? 'error-border' : ''}`} 
-        required  // Add this attribute
-    >
-        {state.availableTimes.length > 0 ? (
-            state.availableTimes.map((time, index) => (
-                <option key={index} value={time}>{time}</option>
-            ))
-        ) : (
-            <option value="">No available times</option>
-        )}
-    </Field>
-</div>
-                    <div className="form-row">
-                        <label htmlFor="guests">Number of guests</label>
-                        <Field 
-                            id="guests"  
-                            type="number" 
-                            name="guests" 
-                            className={`input-field ${isSubmitted && touched.guests && errors.guests ? 'error-border' : ''}`} 
-                            min="1" 
-                            max="10" 
-                        />
-                        {isSubmitted && touched.guests && errors.guests && (
-                            <p className="error-message">{errors.guests}</p>
-                        )}
+
+                    <div className="form-row row-group">
+                        <div className="form-group">
+                            <label htmlFor="guests">Number of guests</label>
+                            <Field 
+                                id="guests"  
+                                type="number" 
+                                name="guests" 
+                                className={`input-field ${isSubmitted && touched.guests && errors.guests ? 'error-border' : ''}`} 
+                                min="1" 
+                                max="10" 
+                                aria-required="true" 
+                                aria-invalid={touched.guests && errors.guests ? 
+                                    "true" : "false"}
+                            />
+                            {isSubmitted && touched.guests && errors.guests && (
+                                <p className="error-message">{errors.guests}</p>
+                            )}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="occasion">
+                                <img className="glasses" src={Glasses} alt="champagne"/>
+                                Occasion
+                                </label>
+                            <CustomDropdown
+                            name="occasion"
+                            value={values.occasion}
+                            options={['Birthday', 'Anniversary']}
+                            onChange={handleChange}
+                            style={{ borderColor: isSubmitted && touched.occasion && errors.occasion ? 'red' : '#f4f4f4' }}
+                                />
+                            {isSubmitted && touched.occasion && errors.occasion && (
+                            <p className="error-message">{errors.occasion}</p>
+                            )}
+                        </div>
                     </div>
-                    <div className="form-row">
-    <label htmlFor="occasion">Occasion</label>
-    <Field 
-        id="occasion"
-        as="select" 
-        name="occasion" 
-        className={`input-field ${isSubmitted && touched.occasion && errors.occasion ? 'error-border' : ''}`}
-        required  // Add this attribute
-    >
-        <option value="">Select an occasion</option>
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
-    </Field>
-    {isSubmitted && touched.occasion && errors.occasion && (
-        <p className="error-message">{errors.occasion}</p>
-    )}
-</div>
+
                     <button 
                         type="submit" 
                         className="submit-button" 
+                        aria-label="On Click"
                         disabled={isSubmitting}
                     >
                         Make Your Reservation
@@ -145,11 +163,3 @@ function BookingForm({ submitForm }) {
 }
 
 export default BookingForm;
-
-
-
-
-
-
-
-

@@ -1,13 +1,14 @@
 import React from "react";
 import './Header.css'
 import { Link } from 'react-router-dom';
-import restaurantChefB from '../components/images/restaurantchefB.jpg';
+import restaurantfood from '../components/images/restaurantfood.jpg';
 import Logo from './Logo';
 
 function Header(){
     return(
         <>
         <header className="hero-section">
+            <div className="hero-container">
             <div className="hero-intro">
          <div className="logo"><Logo/></div> 
             <p className="hero-desc">The Little Lemon Restaurant serves the best Mediterranean meals. Whether
@@ -16,7 +17,8 @@ function Header(){
             <Link to="/booking" className="cta-button">Reserve A Table</Link>
             </div>
             <div className="image-item">
-            <img src={restaurantChefB} alt="restaurantfood"/>
+            <img src={restaurantfood} alt="restaurantfood"/>
+            </div>
             </div>
         </header>
         </>

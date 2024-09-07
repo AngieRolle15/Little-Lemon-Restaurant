@@ -1,36 +1,112 @@
-/* Main.css */
+@import '~@fontsource/markazi-text';
+@import "~@fontsource/karla";
 
 .main-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+
+.specials-section, .about-section {
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+}
+
 .testimonials-section {
-    margin-top:10%;
-  }
-  
-  .specials-container, .testimonials-container {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .headings {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .menu-button {
-    display: block;
-    margin: 0 auto 20px auto;
-  }
-  
-  .specials-container .SpecialsCard, .testimonials-container .TestimonialsCard {
-    flex: 1 1 calc(33.333% - 20px); /* Adjust the width as needed */
-    margin: 10px;
-    box-sizing: border-box;
-  }
-  
+  margin-top: 10%;
+  background-color: #f4f4f4;
+  height: auto;
+  margin-bottom: 10%; 
+  padding-bottom: 40px;
+
+}
+
+.testimonials-container{
+  margin-right: 12.5%;
+  margin-left: 12.5%;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+}
+.specials-container, .testimonials-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.specials-container{
+  height: auto;
+}
+
+.menu-button {
+  background-color: #fece14;
+  border: none;
+  font-size: 16pt;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.special-headings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+#special-head {
+  font-size: 20pt;
+  font-weight: bolder;
+}
+.test-heading{
+  text-align:center;
+  font-size: 40pt;
+  margin:40px 0;
+}
+.about-logo{
+  margin-top:30px;
+}
+
+.about-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about-company {
+  flex: 1; 
+  display: flex;
+  flex-direction: column; 
+  margin-right: 20px; 
+}
+
+.about-image {
+  flex: 1; 
+  position: relative;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.about-img1 {
+  position: relative;
+  width: 200px;
+  height: 250px;
+}
+
+.about-img2 {
+  position: absolute;
+  bottom: 0;
+  left: 50%; 
+  transform: translate(-50%, 50%); 
+  width: 200px;
+  height: 250px;
+  z-index: 1; 
+}
+.about-desc{
+  line-height: 1.5;
+  width: calc(100% - 30px); 
+  font-family: 'karla';
+  font-size: 16pt;
+}

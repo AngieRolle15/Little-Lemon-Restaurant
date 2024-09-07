@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-const Logo = () => {
+const Logo = ({ color }) => {
   return (
     <div>
-        <h1 className="hero-header">Little Lemon</h1>
-        <h2 className="hero-subheading">Chicago</h2>
+        <h1 id="hero-header" style={{ color: color || '#f4ce14' }}>Little Lemon</h1>
+        <h2 id="hero-subheading" style={{ color: color || 'hsl(150, 6%, 93%)' }}>Chicago</h2>
     </div>
-  )
+  );
 }
 
-export default Logo
+export default Logo;
+

@@ -16,7 +16,7 @@ return (
         </li>
         <li><Link to="/booking">Reservations</Link>
         </li>
-        <li><Link to="/">Order Online</Link>
+        <li><Link to="/" className="order-link">Order Online</Link>
         </li>
         <li><Link to="/">Log In</Link></li>
     </ul>
