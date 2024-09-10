@@ -7,6 +7,7 @@ function ConfirmedBooking() {
     <p className="dialog-description">Your reservation has been successfully made. 
         <br/>Thank you for booking with us.</p>
 </div>
+
     );
 }
 

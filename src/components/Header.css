@@ -57,7 +57,7 @@
 
 .cta-button {
   background-color: #fece14;
-  color: #fff;
+  color: #f4f4f4;
   border: none;
   font-size: 18pt;
   text-decoration: none;
@@ -66,10 +66,16 @@
   padding: 10px 10px;
   text-align: center;
   margin:5px 0;
+  font-weight: bold;
 }
 
 .cta-button:hover {
   background-color: #ee9972;
+  color:#f4f4f4;
+}
+.cta-button:active {
+  background-color: #f4f4f4;
+  color: #333333;
 }
 
 .image-item {

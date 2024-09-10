@@ -1,32 +1,80 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import BookingList from './BookingList';
+import { fetchAPI, submitAPI } from '../js/api';
 import { useNavigate } from 'react-router-dom';
 import BookingForm from './BookingForm';
-import BookingList from './BookingList';
 
-function BookingPage({ availableTimes, dispatch, selectedDate, submitForm }) {
+function BookingPage() {
+    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Current date in yyyy-mm-dd
+    const [availableTimes, setAvailableTimes] = useState([]);
+    const [bookedTimes, setBookedTimes] = useState(() => {
+  
+        const savedTimes = localStorage.getItem('bookedTimes');
+        return savedTimes ? JSON.parse(savedTimes) : {};
+    });
     const navigate = useNavigate();
 
-    const handleSubmitForm = async (formData) => {
-        const result = await submitForm(formData); 
-        if (result) {
-            navigate('/booking-confirmation');
-        }
-        return result;
+    
+    useEffect(() => {
+        const fetchAvailableTimes = async () => {
+            if (selectedDate) {
+                const date = new Date(selectedDate);
+                const times = fetchAPI(date);
+                setAvailableTimes(times);
+            }
+        };
+        fetchAvailableTimes();
+    }, [selectedDate]);
+
+
+    const saveBookedTimes = (newBookedTimes) => {
+        localStorage.setItem('bookedTimes', JSON.stringify(newBookedTimes));
     };
 
+    useEffect(() => {
+        const storedBookedTimes = bookedTimes;
+        console.log("Loaded booked times from localStorage:", storedBookedTimes);
+        setBookedTimes(storedBookedTimes);
+    }, []);
+
+    const handleSubmitForm = async (formData) => {
+        console.log("Submitting form data:", formData);
+        try {
+            const result = await submitAPI(formData);  
+            if (result) {
+                const newBookedTimes = { ...bookedTimes };
+                const dateStr = new Date(formData.selectedDate).toDateString();
+
+                if (!newBookedTimes[dateStr]) {
+                    newBookedTimes[dateStr] = [];
+                }
+                newBookedTimes[dateStr].push(formData.selectedTime);
+
+                setBookedTimes(newBookedTimes);
+                saveBookedTimes(newBookedTimes); 
+                navigate('/confirmation');
+            } else {
+                console.error("Form submission failed.");
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+        }
+    };
+    
     return (
-        <div className="booking-page">
-            <h1 className='reserve-header'>Reserve A Table </h1>
+        <div>
             <BookingForm 
-                availableTimes={availableTimes} 
-                dispatch={dispatch} 
+                onSubmit={handleSubmitForm} 
                 selectedDate={selectedDate} 
-                submitForm={handleSubmitForm} 
+                availableTimes={availableTimes} 
+                setSelectedDate={setSelectedDate} 
             />
-            <BookingList availableTimes={availableTimes} />
+            <BookingList
+                availableTimes={availableTimes}
+                bookedTimes={bookedTimes} 
+                selectedDate={selectedDate} />
         </div>
     );
 }
 
 export default BookingPage;
-

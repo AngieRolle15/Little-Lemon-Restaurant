@@ -49,7 +49,7 @@ align-items: center;
 
 .card-price {
   font-size: 16pt;
-  color: #333;
+  color: #ee9972;
   float: right;
   align-items: center;
   margin-top: 10px;
@@ -58,7 +58,7 @@ align-items: center;
 
 .card-description {
   font-size: 16pt;
-  color: #666;
+  color: #333333;
   line-height: 1.5;
   flex-grow: 1; 
   margin-bottom: 10px;

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './CustomDropdown.css';
 
-const CustomDropdown = ({ name, value, options, onChange, style }) => {
+const CustomDropdown = ({ value, options, onChange, style }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSelect = (option) => {
-        onChange({ target: { name, value: option } });
-        setIsOpen(false); // Close dropdown after selection
+      
+        onChange(option); 
+        setIsOpen(false); 
     };
 
     const borderColor = style && style.borderColor ? style.borderColor : '#f4f4f4'; // Use default border color if not provided
@@ -14,14 +15,14 @@ const CustomDropdown = ({ name, value, options, onChange, style }) => {
     return (
         <div 
             className={`custom-dropdown ${isOpen ? 'open' : ''}`} 
-            style={style} // Apply style prop to the main container
+            style={style} 
         >
             <div 
                 className={`dropdown-header ${isOpen ? 'open' : ''}`} 
                 onClick={() => setIsOpen(!isOpen)}
-                style={{ borderColor }} // Apply border color dynamically
+                style={{ borderColor }}
             >
-                {value ? value : "Select an option"} {/* Placeholder text */}
+                {value || "Select an option"} 
             </div>
             {isOpen && (
                 <ul className="dropdown-list">
@@ -41,3 +42,4 @@ const CustomDropdown = ({ name, value, options, onChange, style }) => {
 };
 
 export default CustomDropdown;
+
